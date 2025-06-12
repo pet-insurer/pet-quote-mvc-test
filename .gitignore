@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/pet-quote-mvc-test/FileContentIndex
+/.vs/pet-quote-mvc-test/v17
+/.vs
+/PetInsurance.API/bin/Debug/net8.0
+/PetInsurance.API/obj
+/PetInsurance.Shared/bin/Debug/net8.0
+/PetInsurance.Shared/obj
+/PetInsurance.Tests/bin/Debug/net8.0
+/PetInsurance.Tests/obj
+/PetInsurance.Web/bin/Debug/net8.0
+/PetInsurance.Web/obj

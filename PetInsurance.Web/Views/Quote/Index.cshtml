@@ -1,0 +1,76 @@
+﻿@using PetInsurance.Shared.Request
+@model QuoteRequest
+@{
+    ViewData["Title"] = "Get a Quote";
+    var apiUrl = ViewBag.ApiUrl ?? "http://localhost:5000";
+}
+
+<h2>Get a Quote</h2>
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<form asp-action="Submit" method="post" novalidate>
+    <fieldset class="mb-4 border rounded p-3">
+        <legend class="fw-bold">🐶 Pet Details</legend>
+
+        <div class="mb-3">
+            <label asp-for="Pet.Name" class="form-label">Pet Name</label>
+            <input asp-for="Pet.Name" class="form-control" />
+            <span asp-validation-for="Pet.Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Pet.Breed" class="form-label">Breed</label>
+            <select asp-for="Pet.Breed" class="form-select">
+                <option>Golden Retriever</option>
+                <option>French Bulldog</option>
+                <option>Other</option>
+            </select>
+            <span asp-validation-for="Pet.Breed" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Pet.Age" class="form-label">Age</label>
+            <input asp-for="Pet.Age" type="number" class="form-control" />
+            <span asp-validation-for="Pet.Age" class="text-danger"></span>
+        </div>
+    </fieldset>
+
+    <fieldset class="mb-4 border rounded p-3">
+        <legend class="fw-bold">👤 Owner Details</legend>
+
+        <div class="mb-3">
+            <label asp-for="Owner.FirstName" class="form-label">First Name</label>
+            <input asp-for="Owner.FirstName" class="form-control" />
+            <span asp-validation-for="Owner.FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Owner.LastName" class="form-label">Last Name</label>
+            <input asp-for="Owner.LastName" class="form-control" />
+            <span asp-validation-for="Owner.LastName" class="text-danger"></span>
+        </div>
+    </fieldset>
+
+    <fieldset class="mb-4 border rounded p-3">
+        <legend class="fw-bold">🛡️ Cover Level</legend>
+
+        <div class="mb-3">
+            <label asp-for="CoverLevel" class="form-label">Select a plan</label>
+            <select asp-for="CoverLevel" class="form-select">
+                <option>Standard</option>
+                <option>Premium</option>
+            </select>
+        </div>
+    </fieldset>
+
+    <div id="quote-app" class="mb-4" data-api-url="@apiUrl">
+        <quote-component></quote-component>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit & View Policy</button>
+</form>
+
+@section Scripts {
+    <script type="module" src="~/js/quoteComponent.js"></script>
+}

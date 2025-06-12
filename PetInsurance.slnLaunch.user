@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "PetInsurance.API\\PetInsurance.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "PetInsurance.Web\\PetInsurance.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

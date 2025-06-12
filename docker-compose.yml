@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: PetInsurance.API/Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - Jwt__Secret=X5y9D2nQ4k7H8uP3sW6eR1tF9gZ2cJ5v
+      - Jwt__Issuer=PetInsuranceApi
+      - Jwt__Audience=PetInsuranceUsers
+    networks:
+      - pet-insurance-network
+
+  web:
+    build:
+      context: .
+      dockerfile: PetInsurance.Web/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ApiSettings__PublicBaseUrl=http://localhost:5000
+      - ApiSettings__BaseUrl=http://api
+    depends_on:
+      - api
+    networks:
+      - pet-insurance-network
+
+networks:
+  pet-insurance-network:
+    driver: bridge
